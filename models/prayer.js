@@ -21,4 +21,4 @@ const prayerRequestSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('PrayerRequest', prayerRequestSchema);
+module.exports = mongoose.model('Prayer', prayerRequestSchema);
