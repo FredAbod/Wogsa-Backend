@@ -1,5 +1,5 @@
 const express = require('express');
-const PrayerRequest = require('../models/PrayerRequest');
+const PrayerRequest = require('../models/prayerRequest');
 
 const router = express.Router();
 
