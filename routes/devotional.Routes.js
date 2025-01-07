@@ -25,4 +25,24 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Edit Devotional
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, content } = req.body;
+    const updatedDevotional = await Devotional.findByIdAndUpdate(
+      id,
+      { title, content },
+      { new: true }
+    );
+    if (!updatedDevotional) {
+      return res.status(404).json({ message: 'Devotional not found' });
+    }
+    res.json({ message: 'Devotional updated successfully', updatedDevotional });
+  } catch (err) {
+    res.status(400).json({ message: 'Failed to update devotional' });
+  }
+});
+
+
 module.exports = router;

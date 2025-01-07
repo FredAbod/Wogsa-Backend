@@ -59,4 +59,32 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+
+// @route   PUT /api/contacts/:id
+// @desc    Edit a contact
+// @access  Private
+router.put('/:id', async (req, res) => {
+  const { name, role, phone, email, description } = req.body;
+
+  try {
+    const contact = await Contact.findById(req.params.id);
+
+    if (!contact) {
+      return res.status(404).json({ message: 'Contact not found' });
+    }
+
+    contact.name = name || contact.name;
+    contact.role = role || contact.role;
+    contact.phone = phone || contact.phone;
+    contact.email = email || contact.email;
+    contact.description = description || contact.description;
+
+    const updatedContact = await contact.save();
+    res.json(updatedContact);
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+
 module.exports = router;
