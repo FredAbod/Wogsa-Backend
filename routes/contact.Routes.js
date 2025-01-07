@@ -46,13 +46,12 @@ router.post('/', async (req, res) => {
 // @access  Private
 router.delete('/:id', async (req, res) => {
   try {
-    const contact = await Contact.findById(req.params.id);
+    const contact = await Contact.findByIdAndDelete(req.params.id);
 
     if (!contact) {
       return res.status(404).json({ message: 'Contact not found' });
     }
 
-    await contact.remove();
     res.json({ message: 'Contact removed' });
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
