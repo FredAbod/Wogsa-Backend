@@ -86,5 +86,19 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// Get Single Contact
+router.get('/:id', async (req, res) => {
+  try {
+    const contact = await Contact.findById(req.params.id);
+
+    if (!contact) {
+      return res.status(404).json({ message: 'Contact not found' });
+    }
+
+    res.json(contact);
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
 
 module.exports = router;
