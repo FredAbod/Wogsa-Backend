@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
 // Get all prayer requests (Admin only)
 router.get('/', async (req, res) => {
   try {
-    const requests = await Prayer.find().sort({ date: -1 });
+    const requests = await prayer.find().sort({ date: -1 });
     res.json(requests);
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch prayer requests' });
